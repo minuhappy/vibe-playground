@@ -1,11 +1,13 @@
 {
-  "name": "news-notification-system",
+  "name": "@news-notifier/app",
   "version": "1.0.0",
-  "description": "Netlify Functions for news notification system",
+  "description": "News notification system with Netlify Functions",
   "main": "index.js",
   "scripts": {
     "dev": "netlify dev",
-    "build": "echo 'No build step required'"
+    "build": "echo 'No build step required'",
+    "test": "echo 'No tests specified'",
+    "lint": "echo 'No linting configured'"
   },
   "dependencies": {
     "axios": "^1.6.0",
