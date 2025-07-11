@@ -6,7 +6,9 @@
   "scripts": {
     "start": "netlify dev"
   },
-  "dependencies": {},
+  "dependencies": {
+    "xml2js": "^0.6.2"
+  },
   "devDependencies": {
     "netlify-cli": "^15.0.0"
   }

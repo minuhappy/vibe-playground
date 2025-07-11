@@ -2,4 +2,5 @@
   directory = "netlify/functions"
 
 [functions.scheduled]
-  scheduled-task = "*/5 * * * *" 
+  scheduled-task = "*/5 * * * *"
+  news-monitor = "0 */2 * * *" 
