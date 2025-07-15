@@ -4,12 +4,16 @@
   "description": "Netlify Functions sample project with scheduled function.",
   "main": "index.js",
   "scripts": {
-    "start": "netlify dev"
+    "start": "cross-env NODE_ENV=development netlify dev",
+    "dev": "cross-env NODE_ENV=development netlify dev"
   },
   "dependencies": {
-    "xml2js": "^0.6.2"
+    "xml2js": "^0.6.2",
+    "node-fetch": "^2.6.7",
+    "cheerio": "^1.0.0-rc.12"
   },
   "devDependencies": {
-    "netlify-cli": "^15.0.0"
+    "netlify-cli": "^15.0.0",
+    "cross-env": "^7.0.3"
   }
 } 

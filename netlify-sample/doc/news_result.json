@@ -1,0 +1,115 @@
+{
+    "message": "News monitoring completed",
+    "results": [
+        {
+            "keyword": "AI",
+            "articles": [
+                {
+                    "title": "LG, 한국 첫 하이브리드 AI '엑사원 4.0' 공개 - 전자신문",
+                    "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9RUHhfdTZCQWZiZ1h2MlF3VU5tRGVIa3VCMVFhb0pKUmp5Q2tvQjMwUWV6c01QdEpIYnJuZ3hzQXlESDhsSlg4THVGYko4dw?oc=5",
+                    "pubDate": "Tue, 15 Jul 2025 04:03:04 GMT",
+                    "description": "<a href=\"https://news.google.com/rss/articles/CBMiTkFVX3lxTE9RUHhfdTZCQWZiZ1h2MlF3VU5tRGVIa3VCMVFhb0pKUmp5Q2tvQjMwUWV6c01QdEpIYnJuZ3hzQXlESDhsSlg4THVGYko4dw?oc=5\" target=\"_blank\">LG, 한국 첫 하이브리드 AI '엑사원 4.0' 공개</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">전자신문</font>"
+                },
+                {
+                    "title": "LG, 하이브리드 AI ‘엑사원 4.0’ 공개...API 서비스도 시작 - 디지털투데이",
+                    "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE0teEhrQmtRNFlYWGhKNXJXaVlNdXZmX0xrcy1OZThfSVlNR2NtY1RIdDYxdVRNMGVQTTc4NGYzbEdWVTBZTG9haVBUSTdPR1R6SVJaem4zYUZ2UWU2U1VaSDg0ZW1YcWx2MGdjUVRFWFNZakk?oc=5",
+                    "pubDate": "Tue, 15 Jul 2025 01:04:11 GMT",
+                    "description": "<a href=\"https://news.google.com/rss/articles/CBMic0FVX3lxTE0teEhrQmtRNFlYWGhKNXJXaVlNdXZmX0xrcy1OZThfSVlNR2NtY1RIdDYxdVRNMGVQTTc4NGYzbEdWVTBZTG9haVBUSTdPR1R6SVJaem4zYUZ2UWU2U1VaSDg0ZW1YcWx2MGdjUVRFWFNZakk?oc=5\" target=\"_blank\">LG, 하이브리드 AI ‘엑사원 4.0’ 공개...API 서비스도 시작</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">디지털투데이</font>"
+                },
+                {
+                    "title": "\"구광모, 또 일 냈다\"…AI에 진심인 LG, 오픈AI보다 먼저 하이브리드 AI 모델 공개 - ��디넷코리아",
+                    "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1PN0FiVHZNX2c3Vy10VWh5S1lxNS1PdU13Q1M0NWNPWlFFcnJqQkRoU3VXZkNUT3owOUwxcGpJT3ZtZDZvZVUxaVpsdXdNMHQ4OVVtY0hn?oc=5",
+                    "pubDate": "Tue, 15 Jul 2025 01:00:06 GMT",
+                    "description": "<a href=\"https://news.google.com/rss/articles/CBMiVkFVX3lxTE1PN0FiVHZNX2c3Vy10VWh5S1lxNS1PdU13Q1M0NWNPWlFFcnJqQkRoU3VXZkNUT3owOUwxcGpJT3ZtZDZvZVUxaVpsdXdNMHQ4OVVtY0hn?oc=5\" target=\"_blank\">\"구광모, 또 일 냈다\"…AI에 진심인 LG, 오픈AI보다 먼저 하이브리드 AI 모델 공개</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">지디넷코리아</font>"
+                },
+                {
+                    "title": "“미리 배워둘걸”…천문학적인 비용 아끼지 않는 빅테크들, AI인재 쟁탈전 - 매일경제",
+                    "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1tY1NiYW1lalA1UTVYQm1vM0xtNzJzRTM1YUkwRGwwZGJ2QnVvWjdsVXRVbWNOS2R3SnFyazJPelc0d09iZTFwT1dEbEhFUQ?oc=5",
+                    "pubDate": "Sun, 13 Jul 2025 13:57:20 GMT",
+                    "description": "<a href=\"https://news.google.com/rss/articles/CBMiTkFVX3lxTE1tY1NiYW1lalA1UTVYQm1vM0xtNzJzRTM1YUkwRGwwZGJ2QnVvWjdsVXRVbWNOS2R3SnFyazJPelc0d09iZTFwT1dEbEhFUQ?oc=5\" target=\"_blank\">��미리 배워둘걸”…천문학적인 비용 아끼지 않는 빅테크들, AI인재 쟁탈전</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">매일경제</font>"
+                },
+                {
+                    "title": "메타, 축구장 수십 개 규모 AI 데이터센터 짓는다…인프라 투자 본격화 - 지디넷코리아",
+                    "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBPTGdwWlhVVk9ZOGV2SW4wWTllR3VSQVlwbk1ONVJrT2pjZlpmQ2ZJdUVkX0txN2NpM2p6dVE2RV9FbkFHaWNjU2pIRnJRc3EtX2FoaERR?oc=5",
+                    "pubDate": "Tue, 15 Jul 2025 02:54:07 GMT",
+                    "description": "<a href=\"https://news.google.com/rss/articles/CBMiVkFVX3lxTFBPTGdwWlhVVk9ZOGV2SW4wWTllR3VSQVlwbk1ONVJrT2pjZlpmQ2ZJdUVkX0txN2NpM2p6dVE2RV9FbkFHaWNjU2pIRnJRc3EtX2FoaERR?oc=5\" target=\"_blank\">메타, 축구장 수십 개 규모 AI 데이터센터 짓는다…인프라 투자 본격화</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">지디넷코리아</font>"
+                }
+            ],
+            "timestamp": "2025-07-15T05:31:15.791Z"
+        },
+        {
+            "keyword": "artificial intelligence",
+            "articles": [
+                {
+                    "title": "[AI는 지금] \"전장에도 AI 시대\"…軍 기술, 민간이 만든다 - 지디넷코리아",
+                    "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE0yOWNTejlSUmF0NUZrOVI3MmpOZFpmYVh5Nm00SGFyTXpvd3lBQ2pkM2ZvX0Zfc1NTeHVwRHNleTFUNnBIMV9ZMV9BYjFscTJFSnp6UkFn?oc=5",
+                    "pubDate": "Mon, 14 Jul 2025 07:59:36 GMT",
+                    "description": "<a href=\"https://news.google.com/rss/articles/CBMiVkFVX3lxTE0yOWNTejlSUmF0NUZrOVI3MmpOZFpmYVh5Nm00SGFyTXpvd3lBQ2pkM2ZvX0Zfc1NTeHVwRHNleTFUNnBIMV9ZMV9BYjFscTJFSnp6UkFn?oc=5\" target=\"_blank\">[AI는 지금] \"전장에도 AI 시대\"…軍 기술, 민간이 만든다</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">지디넷코리아</font>"
+                },
+                {
+                    "title": "AI를 소비하는 나라가 아니라, AI를 만드는 나라: 영국, NVIDIA 인프라로 비전을 구축하다 - NVIDIA Blog Korea",
+                    "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1Tank0YkJwRGNqWG9DZEFIZ181YTFEVW9UajhTekpKQUdpWmtzU0ZMWko5cFY3U1NZenYwb1h0Rm5xREFxNTJTam5NZVAteXNXdW5BbzdtRks?oc=5",
+                    "pubDate": "Mon, 14 Jul 2025 02:56:14 GMT",
+                    "description": "<a href=\"https://news.google.com/rss/articles/CBMiWEFVX3lxTE1Tank0YkJwRGNqWG9DZEFIZ181YTFEVW9UajhTekpKQUdpWmtzU0ZMWko5cFY3U1NZenYwb1h0Rm5xREFxNTJTam5NZVAteXNXdW5BbzdtRks?oc=5\" target=\"_blank\">AI를 소비하는 나라가 아니라, AI를 만드는 나라: 영국, NVIDIA 인프라로 비전을 구축하다</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">NVIDIA Blog Korea</font>"
+                },
+                {
+                    "title": "[창간 34주년] 사람��� 만든 AI 기술력 그림·영상물까지 완벽 구현 - 중부일보",
+                    "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1FZl9rSEoyWDNORzhLUzRwN3NzUTUxLW83dl9rb2dRcUxZQWRnb1pKd0gxa3hiMmFTd3NhdjdvaUNFd3Jjd3BUMDlMQmpMS1JmTk1ma1pRTE90MHVqWTZwT0NPYmxyeHExQWJDUkZhRQ?oc=5",
+                    "pubDate": "Mon, 14 Jul 2025 09:05:59 GMT",
+                    "description": "<a href=\"https://news.google.com/rss/articles/CBMib0FVX3lxTE1FZl9rSEoyWDNORzhLUzRwN3NzUTUxLW83dl9rb2dRcUxZQWRnb1pKd0gxa3hiMmFTd3NhdjdvaUNFd3Jjd3BUMDlMQmpMS1JmTk1ma1pRTE90MHVqWTZwT0NPYmxyeHExQWJDUkZhRQ?oc=5\" target=\"_blank\">[창간 34주년] 사람이 만든 AI 기술력 그림·영상물까지 완벽 구현</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">중부일보</font>"
+                },
+                {
+                    "title": "국가AI위원회 위상 강화 입법예고…범정부 AI 컨트롤타워로 키운다 - 전자신문",
+                    "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBOOWNzYVljZUk4M2l5OVY4MmVuNkpSZUd1MkN5RkFXNVlXYlBTZHRqSjdnaHRkZGtWODJmbU9icnRRamxVRlpmUDRDMGhlUQ?oc=5",
+                    "pubDate": "Mon, 14 Jul 2025 09:38:42 GMT",
+                    "description": "<a href=\"https://news.google.com/rss/articles/CBMiTkFVX3lxTFBOOWNzYVljZUk4M2l5OVY4MmVuNkpSZUd1MkN5RkFXNVlXYlBTZHRqSjdnaHRkZGtWODJmbU9icnRRamxVRlpmUDRDMGhlUQ?oc=5\" target=\"_blank\">국가AI위원회 위상 강화 입법예고…범정부 AI 컨트롤타워로 키운다</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">전자신문</font>"
+                },
+                {
+                    "title": "포스코, AWS와 협력해 산업용 AI 개발 - 조선일보",
+                    "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQeVlxZU1GTlQ5UTRBQzU5a0s5U1VCajcxSXpUOVRsZGI1S0dqejZWMVJvOWdlYlBRc1N2b2d6NDFveDN3dzJyTGstaHJSeUx1Nl9WekhtcVRuVHNlNlJOMFJEdm5rZXFudnZaVzdGdDZWa2Z3cnZ6NGtPa01uTFphWXRHZ9IBlwFBVV95cUxORnBGSURnZ3VGNzA1YUxjR2liQTlxMENIeEIzdHNTSmtDRWRQZWdoYkVuNWVraDdKV3M4R3VZMG8tekt4Q01ZbzZld2g4M2xfbGhTVFM0WWJ2dDdWNXpVa2t3OHFFMTRSZGU5NnBxd1NDNHFaTF9JQWVKbW80eDhvcW9jWjBRTW8tSy1Td3BZamtuVmJGWHFZ?oc=5",
+                    "pubDate": "Sun, 13 Jul 2025 05:16:00 GMT",
+                    "description": "<a href=\"https://news.google.com/rss/articles/CBMigwFBVV95cUxQeVlxZU1GTlQ5UTRBQzU5a0s5U1VCajcxSXpUOVRsZGI1S0dqejZWMVJvOWdlYlBRc1N2b2d6NDFveDN3dzJyTGstaHJSeUx1Nl9WekhtcVRuVHNlNlJOMFJEdm5rZXFudnZaVzdGdDZWa2Z3cnZ6NGtPa01uTFphWXRHZ9IBlwFBVV95cUxORnBGSURnZ3VGNzA1YUxjR2liQTlxMENIeEIzdHNTSmtDRWRQZWdoYkVuNWVraDdKV3M4R3VZMG8tekt4Q01ZbzZld2g4M2xfbGhTVFM0WWJ2dDdWNXpVa2t3OHFFMTRSZGU5NnBxd1NDNHFaTF9JQWVKbW80eDhvcW9jWjBRTW8tSy1Td3BZamtuVmJGWHFZ?oc=5\" target=\"_blank\">포스코, AWS와 협력해 산업용 AI 개발</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">조선일보</font>"
+                }
+            ],
+            "timestamp": "2025-07-15T05:31:16.810Z"
+        },
+        {
+            "keyword": "machine learning",
+            "articles": [
+                {
+                    "title": "Predicting Financial Market Stress with Machine Learning | 국외연구자료 | KDI 경제교육·정보센터 - KDI 경제교육·정보센터",
+                    "link": "https://news.google.com/rss/articles/CBMickFVX3lxTE5GOHRsdUVrR0l3TmVFSnIwY2RlN1RtTEZCdE1LVWw4VFc1ci1PTkE2aXA5NlJHQlMwcWhSejRfWXQ1T0c3Xy1JT3QzNFh0dDhsaWlpdUt5R2dodThLcERVRGFtN0wwSURrNDlUQ1Z5Mi1QUQ?oc=5",
+                    "pubDate": "Mon, 14 Jul 2025 10:15:29 GMT",
+                    "description": "<a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTE5GOHRsdUVrR0l3TmVFSnIwY2RlN1RtTEZCdE1LVWw4VFc1ci1PTkE2aXA5NlJHQlMwcWhSejRfWXQ1T0c3Xy1JT3QzNFh0dDhsaWlpdUt5R2dodThLcERVRGFtN0wwSURrNDlUQ1Z5Mi1QUQ?oc=5\" target=\"_blank\">Predicting Financial Market Stress with Machine Learning | 국외연구자료 | KDI 경제교육·정보센터</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">KDI 경제교육·정보센터</font>"
+                },
+                {
+                    "title": "안젯텍 '베샤드' 대표, \"양자머신러닝의 핵심은 학습이 아니라 '압축과 해석'에 있다\" - 인공지능신문",
+                    "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE52RjlMZ0pmRGRxWmNTdFlJek5Xakh2am1sLXZza0tsejVLcnA5OUFxM3VKMFdkZzRTejAyU0E4S0JkcENmb2N5RXRUQzgwRmMzVVgtNlpTcFRRODJ3YnotdVNQOGtPOGM?oc=5",
+                    "pubDate": "Mon, 14 Jul 2025 23:15:10 GMT",
+                    "description": "<a href=\"https://news.google.com/rss/articles/CBMiZ0FVX3lxTE52RjlMZ0pmRGRxWmNTdFlJek5Xakh2am1sLXZza0tsejVLcnA5OUFxM3VKMFdkZzRTejAyU0E4S0JkcENmb2N5RXRUQzgwRmMzVVgtNlpTcFRRODJ3YnotdVNQOGtPOGM?oc=5\" target=\"_blank\">안젯텍 '베샤드' 대표, \"양자머신러닝��� 핵심은 학습이 아니라 '압축과 해석'에 있다\"</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">인공지능신문</font>"
+                },
+                {
+                    "title": "고온 실험 없이 최적의 합금 설계 예측하는 AI - 동아사이언스",
+                    "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE05LXhXOE9yLVdmRzI3bzFXTGFfRFVrdFBpOE5PWGNLdDZEX21uanNpNHpGZ3NaeXZXN1RxMEZlaUY5SzFMNEJ2X1ltM3JvS2JRYUlKa0UwQ0t3aHc?oc=5",
+                    "pubDate": "Mon, 14 Jul 2025 02:23:40 GMT",
+                    "description": "<a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE05LXhXOE9yLVdmRzI3bzFXTGFfRFVrdFBpOE5PWGNLdDZEX21uanNpNHpGZ3NaeXZXN1RxMEZlaUY5SzFMNEJ2X1ltM3JvS2JRYUlKa0UwQ0t3aHc?oc=5\" target=\"_blank\">고온 실험 없이 최적의 합금 설계 예측하는 AI</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">동아사이언스</font>"
+                },
+                {
+                    "title": "뜨거운 용광로 대신 AI... KAIST, 합금 융해 예측 성공으로 신소재 개발 혁신 - 특허뉴스",
+                    "link": "https://news.google.com/rss/articles/CBMiSEFVX3lxTFBHN0l6dTRZVWdKN3lLRXJfdlc1cDZBSmxvTnJES3FMdzc1Y3ZTUnJQdm10bzVMcGp2VUNPOHlVc0dfZUpXdTFOUg?oc=5",
+                    "pubDate": "Mon, 14 Jul 2025 05:25:00 GMT",
+                    "description": "<a href=\"https://news.google.com/rss/articles/CBMiSEFVX3lxTFBHN0l6dTRZVWdKN3lLRXJfdlc1cDZBSmxvTnJES3FMdzc1Y3ZTUnJQdm10bzVMcGp2VUNPOHlVc0dfZUpXdTFOUg?oc=5\" target=\"_blank\">뜨거운 용광로 대신 AI... KAIST, 합금 융해 예측 성공으로 신소재 개발 혁신</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">특허뉴스</font>"
+                },
+                {
+                    "title": "고온 실험 없이 합금 융해 특성 예측하는 AI 모델 개발 - 네이트 뉴스",
+                    "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE11VjdnZnh5bEF0MWt6YnlVejA2eHB5cHFnUVE2YWdOZ3lnQXJRY1hJbV9WNGhKTTAzazBwUmNVUXliTGNFMmNraWNqMGsyenBkSWtF?oc=5",
+                    "pubDate": "Sun, 13 Jul 2025 23:51:00 GMT",
+                    "description": "<a href=\"https://news.google.com/rss/articles/CBMiU0FVX3lxTE11VjdnZnh5bEF0MWt6YnlVejA2eHB5cHFnUVE2YWdOZ3lnQXJRY1hJbV9WNGhKTTAzazBwUmNVUXliTGNFMmNraWNqMGsyenBkSWtF?oc=5\" target=\"_blank\">고온 실험 없이 합금 융해 특성 예측하는 AI 모델 개발</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">네이트 뉴스</font>"
+                }
+            ],
+            "timestamp": "2025-07-15T05:31:18.000Z"
+        }
+    ],
+    "totalKeywords": 3,
+    "timestamp": "2025-07-15T05:31:18.000Z"
+}
