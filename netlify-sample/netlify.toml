@@ -1,5 +1,6 @@
-[functions]
-  directory = "netlify/functions"
+[build]
+  publish = "app"
+  functions = "netlify/functions"
 
 [functions.scheduled]
   scheduled-task = "*/5 * * * *"

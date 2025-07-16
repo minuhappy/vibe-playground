@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>뉴스 모니터링 앱</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>뉴스 모니터링 앱</h1>
+  </header>
+  <div id="results">
+    <div class="loading">로딩 중...</div>
+  </div>
+  <script>
+    const API_URL = '/.netlify/functions/news-monitor';
+
+    async function fetchNews() {
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = '<div class="loading">로딩 중...</div>';
+      try {
+        const res = await fetch(API_URL);
+        if (!res.ok) throw new Error('API 요청 실패: ' + res.status);
+        const data = await res.json();
+        if (!data.results || !Array.isArray(data.results)) throw new Error('응답 형식 오류');
+        if (data.results.length === 0) {
+          resultsDiv.innerHTML = '<div>결과가 없습니다.</div>';
+          return;
+        }
+        resultsDiv.innerHTML = '';
+        data.results.forEach(item => {
+          const block = document.createElement('div');
+          block.className = 'keyword-block';
+          const title = document.createElement('div');
+          title.className = 'keyword-title';
+          title.textContent = item.keyword;
+          block.appendChild(title);
+
+          if (item.articles && item.articles.length > 0) {
+            const ul = document.createElement('ul');
+            item.articles.forEach(article => {
+              const li = document.createElement('li');
+              const a = document.createElement('a');
+              a.href = article.link;
+              a.textContent = article.title;
+              a.target = '_blank';
+              li.appendChild(a);
+              ul.appendChild(li);
+            });
+            block.appendChild(ul);
+          } else {
+            const noNews = document.createElement('div');
+            noNews.textContent = '기사가 없습니다.';
+            block.appendChild(noNews);
+          }
+          resultsDiv.appendChild(block);
+        });
+      } catch (err) {
+        resultsDiv.innerHTML = `<div class="error">에러: ${err.message}</div>`;
+      }
+    }
+
+    fetchNews();
+  </script>
+</body>
+</html> 
