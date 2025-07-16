@@ -1,78 +1,138 @@
 :root {
-  --primary: #2563eb;
-  --bg: #f4f6fa;
+  --primary: #222;
+  --accent: #2563eb;
+  --bg: #f9fafb;
   --card-bg: #fff;
   --border: #e5e7eb;
-  --radius: 16px;
-  --shadow: 0 2px 8px rgba(0,0,0,0.06);
+  --radius: 12px;
+  --shadow: 0 2px 16px rgba(30,41,59,0.07);
+  --font-main: 'Pretendard', 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+  --tab-bg: #f1f3f6;
+  --tab-active: #222;
+  --tab-inactive: #888;
 }
 html, body {
   margin: 0; padding: 0;
   background: var(--bg);
-  font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
-  color: #222;
+  font-family: var(--font-main);
+  color: var(--primary);
   min-height: 100vh;
 }
 header {
-  background: var(--primary);
-  color: #fff;
-  padding: 1.2rem 1rem 1rem 1rem;
-  border-bottom-left-radius: var(--radius);
-  border-bottom-right-radius: var(--radius);
-  box-shadow: var(--shadow);
+  background: var(--bg);
+  color: var(--primary);
+  padding: 2rem 1rem 1.2rem 1rem;
   text-align: center;
+  border-bottom: 1px solid var(--border);
 }
 header h1 {
   margin: 0;
-  font-size: 1.7rem;
+  font-size: 1.3rem;
+  font-weight: 800;
   letter-spacing: -1px;
+}
+.tabs {
+  display: flex;
+  gap: 0.7rem;
+  overflow-x: auto;
+  padding: 0.7rem 0.2rem 0.7rem 0.2rem;
+  background: var(--bg);
+  border-bottom: none;
+  margin-bottom: 0.2rem;
+  font-size: 1.08rem;
   font-weight: 700;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-inline: 4px;
+  justify-content: flex-start;
+}
+.tab {
+  flex: 0 0 auto;
+  background: #f4f5f7;
+  color: #333;
+  border: none;
+  border-radius: 999px;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  position: relative;
+  outline: none;
+  box-shadow: none;
+  margin-bottom: 0.1rem;
+}
+.tab.active {
+  background: #232428;
+  color: #fff;
+}
+.tab:active {
+  filter: brightness(0.97);
+}
+.tab.active::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  bottom: -7px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
 }
 #results {
-  max-width: 480px;
-  margin: 2rem auto 0 auto;
+  max-width: 540px;
+  margin: 0 auto;
   padding: 0 1rem;
-}
-.keyword-block {
-  background: var(--card-bg);
+  background: #fff;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  margin-bottom: 1.5rem;
-  padding: 1.2rem 1rem 1rem 1rem;
+  margin-top: 0.5rem;
   border: 1px solid var(--border);
-  transition: box-shadow 0.2s;
 }
-.keyword-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--primary);
-  margin-bottom: 0.7em;
-  letter-spacing: -0.5px;
-}
-ul {
-  padding-left: 1.1em;
+.article-list {
   margin: 0;
+  padding: 0;
+  list-style: none;
 }
-li {
-  margin-bottom: 0.7em;
-  font-size: 1rem;
-  line-height: 1.4;
-  list-style: disc inside;
+.article-list-item {
+  padding: 1.1rem 0.5rem 1.1rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
-a {
-  color: #222;
+.article-list-item:last-child {
+  border-bottom: none;
+}
+.article-title {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--primary);
+  margin: 0 0 0.2em 0;
+  line-height: 1.5;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
   text-decoration: none;
-  border-bottom: 1px dotted var(--primary);
   transition: color 0.2s;
 }
-a:hover {
-  color: var(--primary);
-  border-bottom: 1px solid var(--primary);
+.article-title:hover {
+  color: var(--accent);
+}
+.article-meta {
+  font-size: 0.8rem;
+  color: #888;
+  display: flex;
+  gap: 0.7em;
+  font-weight: 400;
 }
 .error {
   color: #e11d48;
   text-align: center;
   margin: 2rem 0;
+  font-weight: 600;
 }
 .loading {
   color: #888;
@@ -81,16 +141,17 @@ a:hover {
 }
 @media (max-width: 600px) {
   #results {
-    margin-top: 1.2rem;
-    padding: 0 0.3rem;
+    padding: 0 0.1rem;
+    margin-top: -0.3rem;
+    margin-inline: 4px;
   }
-  .keyword-block {
-    padding: 1rem 0.7rem 0.8rem 0.7rem;
+  .article-list-item {
+    padding: 0.8rem 0.3rem 0.8rem 0.3rem;
   }
   header {
-    padding: 1rem 0.5rem 0.8rem 0.5rem;
+    padding: 1.2rem 0.5rem 0.8rem 0.5rem;
   }
   header h1 {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
   }
-} 
+}

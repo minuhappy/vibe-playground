@@ -2,7 +2,7 @@ const https = require('https');
 const { parseString } = require('xml2js');
 // const { callGemini } = require('./gemini'); // Gemini 호출이 필요 없으니 주석 처리
 
-const KEYWORDS = ['AI']; // 여러 키워드 사용 시 배열에 추가
+const KEYWORDS = ['AI', '카카오', '네이버']; // 여러 키워드 사용 시 배열에 추가
 
 function fetchGoogleNewsArticles(keyword) {
   const url = `https://news.google.com/rss/search?q=${encodeURIComponent(keyword)}&hl=ko&gl=KR&ceid=KR:ko`;
@@ -18,7 +18,7 @@ function fetchGoogleNewsArticles(keyword) {
           if (err) return reject(new Error(`XML parsing error: ${err.message}`));
           try {
             const items = result.rss.channel[0].item || [];
-            const articles = items.slice(0, 3).map(item => ({
+            const articles = items.slice(0, 20).map(item => ({
               title: item.title[0],
               link: item.link[0]
             }));
