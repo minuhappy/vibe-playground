@@ -1,7 +1,7 @@
 [build]
   publish = "app"
   functions = "netlify/functions"
-
+ 
 [functions.scheduled]
   scheduled-task = "*/5 * * * *"
   news-monitor = "0 */2 * * *" 
