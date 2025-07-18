@@ -129,7 +129,7 @@
     let baseDotSpeed = isMobile() ? 3.85 * 0.25 : 3.85; // 모바일은 75% 더 느리게 (기존 대비 50% 더 느리게)
     let dotSpeed = baseDotSpeed;
     let dotInterval = 350;   // 일정하게 유지
-    let dotsPerSpawn = 1.32;    // 한 번에 생성할 점 개수 (20% 증가)
+    let dotsPerSpawn = 1.2;    // 한 번에 생성할 점 개수 (20% 증가)
     let lastDotTime = 0;
     let score = 0;
     let gameOver = false;
@@ -299,8 +299,8 @@
       score++;
       document.getElementById('score').textContent = 'Score: ' + score;
       // Increase difficulty: only increase dotsPerSpawn
-      if (score % 60 === 0 && dotsPerSpawn < 8 * 1.32) {
-        dotsPerSpawn += 1.32;
+      if (score % 60 === 0 && dotsPerSpawn < 8 * 1.2) {
+        dotsPerSpawn += 1.2;
       }
     }
 
@@ -414,7 +414,7 @@
       baseDotSpeed = isMobile() ? 3.85 * 0.25 : 3.85;
       dotSpeed = baseDotSpeed;
       dotInterval = 350;
-      dotsPerSpawn = 1.32;    // 한 번에 생성할 점 개수 (20% 증가)
+      dotsPerSpawn = 1.2;    // 한 번에 생성할 점 개수 (20% 증가)
       lastDotTime = 0;
       score = 0;
       gameOver = false;
@@ -471,7 +471,7 @@
       baseDotSpeed = isMobile() ? 3.85 * 0.25 : 3.85;
       dotSpeed = baseDotSpeed;
       dotInterval = 350;
-      dotsPerSpawn = 1.32;    // 한 번에 생성할 점 개수 (20% 증가)
+      dotsPerSpawn = 1.2;    // 한 번에 생성할 점 개수 (20% 증가)
       lastDotTime = 0;
       score = 0;
       gameOver = false;
