@@ -6,7 +6,8 @@
   <title>Sky Evader</title>
   <style>
     html, body {
-      height: 100%;
+      height: 100vh;
+      width: 100vw;
       margin: 0;
       padding: 0;
       background: #10121a;
@@ -19,23 +20,26 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
+      width: 100vw;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
     }
     #game-container {
-      position: relative;
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100vw;
-      max-width: 480px;
       height: 100vh;
-      max-height: 100vh;
       background: rgba(24,26,36,0.92);
-      border-radius: 18px;
-      box-shadow: 0 4px 32px rgba(30,41,59,0.13);
       overflow: hidden;
-      margin: 0 auto;
-      border: 2px solid #232946;
+      margin: 0;
+      padding: 0;
+      /* Remove border, border-radius, box-shadow for edge-to-edge */
     }
     #game-canvas {
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       display: block;
       background: transparent;
     }
@@ -84,11 +88,22 @@
     }
     @media (max-width: 600px) {
       #game-container {
-        max-width: 100vw;
         width: 100vw;
         height: 100vh;
+        max-width: 100vw;
         max-height: 100vh;
-        border-radius: 0;
+        margin: 0;
+        padding: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+      }
+      #game-canvas {
+        width: 100vw;
+        height: 100vh;
       }
       #game-over {
         font-size: 1.2rem;
