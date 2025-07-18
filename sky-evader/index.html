@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sky Evader</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #10121a;
+      font-family: 'Segoe UI', 'Pretendard', 'Noto Sans KR', Arial, sans-serif;
+      overflow: hidden;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    #game-container {
+      position: relative;
+      width: 100vw;
+      max-width: 480px;
+      height: 80vh;
+      max-height: 700px;
+      background: rgba(24,26,36,0.92);
+      border-radius: 18px;
+      box-shadow: 0 4px 32px rgba(30,41,59,0.13);
+      overflow: hidden;
+      margin: 0 auto;
+      border: 2px solid #232946;
+    }
+    #game-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: transparent;
+    }
+    #game-over {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(30,41,59,0.95);
+      color: #fff;
+      padding: 2rem 2.5rem;
+      border-radius: 18px;
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      z-index: 10;
+      box-shadow: 0 2px 16px rgba(30,41,59,0.18);
+      display: none;
+    }
+    #restart-btn {
+      margin-top: 1.5rem;
+      padding: 0.7rem 2.2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 999px;
+      background: #6e7ff3;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.09);
+      transition: background 0.2s;
+    }
+    #restart-btn:hover {
+      background: #232946;
+    }
+    #score {
+      position: absolute;
+      top: 1.1rem;
+      left: 1.5rem;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-shadow: 0 2px 8px #23294644;
+      z-index: 2;
+      letter-spacing: 1px;
+    }
+    @media (max-width: 600px) {
+      #game-container {
+        max-width: 100vw;
+        height: 70vh;
+        border-radius: 0;
+      }
+      #game-over {
+        font-size: 1.2rem;
+        padding: 1.2rem 1rem;
+      }
+      #score {
+        font-size: 1rem;
+        left: 0.7rem;
+        top: 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 난이도 선택 폼 완전히 삭제 -->
+  <!-- <form id="difficulty-select"> ... </form> -->
+  <div id="game-container">
+    <canvas id="game-canvas"></canvas>
+    <div id="score">Score: 0</div>
+    <div id="game-over">
+      Game Over!<br>
+      <span id="final-score"></span>
+      <button id="restart-btn">Restart</button>
+    </div>
+  </div>
+  <script>
+    const canvas = document.getElementById('game-canvas');
+    const ctx = canvas.getContext('2d');
+    let W = 360, H = 540;
+    const shipW = 22 * 1.2, shipH = 12 * 1.2;
+    let shipX = W/2 - shipW/2;
+    let shipYpos = null;
+    let leftPressed = false, rightPressed = false, upPressed = false, downPressed = false;
+    let dots = [];
+    let dotRadius = 4; // 더 작고, 그라데이션/글로우 없음
+    // 모바일 환경 감지
+    function isMobile() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    let baseDotSpeed = isMobile() ? 3.85 * 0.7 : 3.85; // 모바일은 30% 더 느리게
+    let dotSpeed = baseDotSpeed;
+    let dotInterval = 350;   // 일정하게 유지
+    let dotsPerSpawn = 1.1;    // 한 번에 생성할 점 개수 (10% 증가)
+    let lastDotTime = 0;
+    let score = 0;
+    let gameOver = false;
+    let animationId;
+    let breakingParticles = [];
+    let breakingFrame = 0;
+
+    // Touch controls for mobile
+    let touchStartX = null, touchStartY = null;
+    canvas.addEventListener('touchstart', e => {
+      if (e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }
+    });
+    canvas.addEventListener('touchmove', e => {
+      if (touchStartX !== null && touchStartY !== null && e.touches.length === 1) {
+        const dx = e.touches[0].clientX - touchStartX;
+        const dy = e.touches[0].clientY - touchStartY;
+        shipX += dx;
+        shipYpos += dy;
+        if (shipX < 0) shipX = 0;
+        if (shipX > W - shipW) shipX = W - shipW;
+        if (shipYpos < 0) shipYpos = 0;
+        if (shipYpos > H - shipH) shipYpos = H - shipH;
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }
+    });
+    canvas.addEventListener('touchend', () => { touchStartX = null; touchStartY = null; });
+
+    // Keyboard controls
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') leftPressed = true;
+      if (e.key === 'ArrowRight') rightPressed = true;
+      if (e.key === 'ArrowUp') upPressed = true;
+      if (e.key === 'ArrowDown') downPressed = true;
+    });
+    document.addEventListener('keyup', e => {
+      if (e.key === 'ArrowLeft') leftPressed = false;
+      if (e.key === 'ArrowRight') rightPressed = false;
+      if (e.key === 'ArrowUp') upPressed = false;
+      if (e.key === 'ArrowDown') downPressed = false;
+    });
+
+    function resizeCanvas() {
+      const container = document.getElementById('game-container');
+      W = container.clientWidth;
+      H = container.clientHeight;
+      canvas.width = W;
+      canvas.height = H;
+      if (shipYpos === null) {
+        shipYpos = H * 2/3 - shipH/2;
+        shipX = W/2 - shipW/2;
+      } else if (shipYpos > H - shipH) {
+        shipYpos = H - shipH - 18;
+      }
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function drawShip() {
+      ctx.save();
+      ctx.translate(shipX + shipW / 2, shipYpos + shipH / 2);
+
+      // 몸체(동체)
+      ctx.beginPath();
+      ctx.moveTo(0, -shipH / 2); // 앞머리
+      ctx.lineTo(-shipW / 4, shipH / 2); // 왼쪽 아래
+      ctx.lineTo(shipW / 4, shipH / 2); // 오른쪽 아래
+      ctx.closePath();
+      ctx.fillStyle = '#fff';
+      ctx.shadowColor = '#6e7ff3';
+      ctx.shadowBlur = 12;
+      ctx.fill();
+
+      // 좌우 날개
+      ctx.beginPath();
+      ctx.moveTo(-shipW / 4, shipH / 6);
+      ctx.lineTo(-shipW / 2, shipH / 2.5);
+      ctx.lineTo(-shipW / 8, shipH / 2.5);
+      ctx.closePath();
+      ctx.fillStyle = '#6e7ff3';
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(shipW / 4, shipH / 6);
+      ctx.lineTo(shipW / 2, shipH / 2.5);
+      ctx.lineTo(shipW / 8, shipH / 2.5);
+      ctx.closePath();
+      ctx.fillStyle = '#6e7ff3';
+      ctx.fill();
+
+      // 꼬리날개
+      ctx.beginPath();
+      ctx.moveTo(-shipW / 12, shipH / 2.5);
+      ctx.lineTo(0, shipH / 1.7);
+      ctx.lineTo(shipW / 12, shipH / 2.5);
+      ctx.closePath();
+      ctx.fillStyle = '#232946';
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    function drawDot(dot) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(dot.x, dot.y, dotRadius, 0, 2 * Math.PI);
+      ctx.fillStyle = dot.color || '#e0e0e0'; // 은색(기본), 빠른 점은 금색
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function drawBreakingParticles() {
+      for (const p of breakingParticles) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.alpha;
+        ctx.shadowColor = '#6e7ff3';
+        ctx.shadowBlur = 6;
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      // Only draw the ship if not breaking
+      if (!gameOver && breakingParticles.length === 0) drawShip();
+      dots.forEach(drawDot);
+      drawBreakingParticles();
+    }
+
+    function update() {
+      // Move ship
+      if (leftPressed) shipX -= 6;
+      if (rightPressed) shipX += 6;
+      if (upPressed) shipYpos -= 6;
+      if (downPressed) shipYpos += 6;
+      if (shipX < 0) shipX = 0;
+      if (shipX > W - shipW) shipX = W - shipW;
+      if (shipYpos < 0) shipYpos = 0;
+      if (shipYpos > H - shipH) shipYpos = H - shipH;
+      // Move dots
+      for (let dot of dots) {
+        dot.x += dot.vx || 0;
+        dot.y += dot.vy || dot.speed;
+      }
+      // Remove off-screen dots
+      dots = dots.filter(dot =>
+        dot.y < H + dotRadius && dot.x > -dotRadius && dot.x < W + dotRadius
+      );
+      // Collision detection (smaller hitbox)
+      for (let dot of dots) {
+        const centerX = shipX + shipW/2;
+        const centerY = shipYpos + shipH/2;
+        const dist = Math.hypot(dot.x - centerX, dot.y - centerY);
+        if (dist < Math.min(shipW, shipH) * 0.45 + dotRadius * 0.7) {
+          triggerBreaking();
+          return;
+        }
+      }
+      // Score
+      score++;
+      document.getElementById('score').textContent = 'Score: ' + score;
+      // Increase difficulty: only increase dotsPerSpawn
+      if (score % 60 === 0 && dotsPerSpawn < 8 * 1.1) {
+        dotsPerSpawn += 1.1;
+      }
+    }
+
+    function spawnDot() {
+      for (let i = 0; i < Math.floor(dotsPerSpawn); i++) {
+        // 1%: 3배 빠른 빨간색(1000점 초과 시), 3%: 2배 빠른 금색, 나머지: 은색
+        const r = Math.random();
+        let speed, color;
+        if (score > 1000 && r < 0.01) {
+          speed = dotSpeed * 3;
+          color = '#ff3b3b'; // 빨간색
+        } else if (r < 0.04) {
+          speed = dotSpeed * 2;
+          color = '#ffd700'; // 금색
+        } else {
+          speed = dotSpeed;
+          color = '#e0e0e0'; // 은색
+        }
+        // 50%: 비행기 방향, 50%: 기존 랜덤 방향
+        if (Math.random() < 0.5) {
+          // 비행기 방향
+          const x = Math.random() * (W - dotRadius * 2) + dotRadius;
+          const y = -dotRadius;
+          const targetX = shipX + shipW / 2;
+          const targetY = shipYpos + shipH / 2;
+          const dx = targetX - x;
+          const dy = targetY - y;
+          const dist = Math.hypot(dx, dy);
+          const vx = dx / dist * speed;
+          const vy = dy / dist * speed;
+          dots.push({ x, y, speed, vx, vy, color });
+        } else {
+          // 기존 랜덤 방향 (20% 좌->우, 20% 우->좌, 60% 위->아래)
+          const dir = Math.random();
+          if (dir < 0.2) {
+            // 좌->우
+            const y = Math.random() * (H * 0.7) + dotRadius;
+            dots.push({ x: -dotRadius, y, speed, vx: speed * 0.3, vy: 0, color });
+          } else if (dir < 0.4) {
+            // 우->좌
+            const y = Math.random() * (H * 0.7) + dotRadius;
+            dots.push({ x: W + dotRadius, y, speed, vx: -speed * 0.3, vy: 0, color });
+          } else {
+            // 위->아래
+            const x = Math.random() * (W - dotRadius * 2) + dotRadius;
+            dots.push({ x, y: -dotRadius, speed, vx: 0, vy: speed, color });
+          }
+        }
+      }
+    }
+
+    function gameLoop(ts) {
+      if (gameOver && breakingParticles.length === 0) return;
+      draw();
+      if (!gameOver) update();
+      if (!lastDotTime || ts - lastDotTime > dotInterval) {
+        spawnDot();
+        lastDotTime = ts;
+      }
+      updateBreakingParticles();
+      animationId = requestAnimationFrame(gameLoop);
+    }
+
+    function triggerBreaking() {
+      gameOver = true;
+      // Create breaking particles from ship
+      breakingParticles = [];
+      const centerX = shipX + shipW/2;
+      const centerY = shipYpos + shipH/2;
+      const colors = ['#fff', '#6e7ff3', '#232946'];
+      for (let i = 0; i < 18; i++) {
+        const angle = (Math.PI * 2 * i) / 18;
+        const speed = 2.5 + Math.random() * 2.5;
+        breakingParticles.push({
+          x: centerX,
+          y: centerY,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          r: 4 + Math.random() * 3,
+          color: colors[i % colors.length],
+          alpha: 1
+        });
+      }
+    }
+
+    function updateBreakingParticles() {
+      if (!gameOver || breakingParticles.length === 0) return;
+      for (const p of breakingParticles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vx *= 0.97;
+        p.vy *= 0.97;
+        p.alpha -= 0.025;
+      }
+      breakingParticles = breakingParticles.filter(p => p.alpha > 0);
+      if (breakingParticles.length === 0) {
+        // Show game over message after animation
+        document.getElementById('game-over').style.display = 'block';
+        document.getElementById('final-score').textContent = `Score: ${score}`;
+      }
+    }
+
+    function endGame() {
+      // Not used anymore, replaced by triggerBreaking
+    }
+
+    function restartGame() {
+      shipX = W/2 - shipW/2;
+      shipYpos = H * 2/3 - shipH/2;
+      dots = [];
+      baseDotSpeed = isMobile() ? 3.85 * 0.7 : 3.85;
+      dotSpeed = baseDotSpeed;
+      dotInterval = 350;
+      dotsPerSpawn = 1.1;    // 한 번에 생성할 점 개수 (10% 증가)
+      lastDotTime = 0;
+      score = 0;
+      gameOver = false;
+      breakingParticles = [];
+      breakingFrame = 0;
+      hideGameOver();
+      document.getElementById('score').textContent = 'Score: 0';
+      resizeCanvas();
+      requestAnimationFrame(gameLoop);
+    }
+
+    document.getElementById('restart-btn').onclick = restartGame;
+
+    // Add keyboard event for restart on popup
+    function handleRestartKey(e) {
+      if (!gameOver) return;
+      if (document.getElementById('game-over').style.display !== 'block') return;
+      if (e.code === 'Space' || e.code === 'Enter' || e.key === ' ' || e.key === 'Enter') {
+        restartGame();
+      }
+    }
+    // Attach/detach keydown event when popup is shown/hidden
+    const gameOverDiv = document.getElementById('game-over');
+    const origShow = gameOverDiv.style.display;
+    const showGameOver = () => {
+      gameOverDiv.style.display = 'block';
+      document.addEventListener('keydown', handleRestartKey);
+    };
+    const hideGameOver = () => {
+      gameOverDiv.style.display = 'none';
+      document.removeEventListener('keydown', handleRestartKey);
+    };
+    // Patch updateBreakingParticles to use showGameOver
+    function updateBreakingParticles() {
+      if (!gameOver || breakingParticles.length === 0) return;
+      for (const p of breakingParticles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vx *= 0.97;
+        p.vy *= 0.97;
+        p.alpha -= 0.025;
+      }
+      breakingParticles = breakingParticles.filter(p => p.alpha > 0);
+      if (breakingParticles.length === 0) {
+        showGameOver();
+        document.getElementById('final-score').textContent = `Score: ${score}`;
+      }
+    }
+    // Patch restartGame to use hideGameOver
+    function restartGame() {
+      shipX = W/2 - shipW/2;
+      shipYpos = H * 2/3 - shipH/2;
+      dots = [];
+      baseDotSpeed = isMobile() ? 3.85 * 0.7 : 3.85;
+      dotSpeed = baseDotSpeed;
+      dotInterval = 350;
+      dotsPerSpawn = 1.1;    // 한 번에 생성할 점 개수 (10% 증가)
+      lastDotTime = 0;
+      score = 0;
+      gameOver = false;
+      breakingParticles = [];
+      breakingFrame = 0;
+      hideGameOver();
+      document.getElementById('score').textContent = 'Score: 0';
+      resizeCanvas();
+      requestAnimationFrame(gameLoop);
+    }
+
+    // 난이도 선택 이벤트 핸들러 완전히 제거
+    // document.getElementById('difficulty-select').addEventListener('change', e => {
+    //   if (e.target.name === 'difficulty') {
+    //     currentDifficulty = e.target.value;
+    //     restartGame();
+    //   }
+    // });
+
+    // Start game
+    restartGame();
+  </script>
+</body>
+</html> 
