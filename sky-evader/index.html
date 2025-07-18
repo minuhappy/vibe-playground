@@ -130,7 +130,8 @@
     function isMobile() {
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
-    let baseDotSpeed = isMobile() ? 3.85 * 0.25 : 3.85; // 모바일은 75% 더 느리게 (기존 대비 50% 더 느리게)
+    // Adjusted for time-based movement: 240px/sec (desktop), 70px/sec (mobile)
+    let baseDotSpeed = isMobile() ? 70 : 240;
     let dotSpeed = baseDotSpeed;
     let dotInterval = 350;   // 일정하게 유지
     let dotsPerSpawn = 1.2;    // 한 번에 생성할 점 개수 (20% 증가)
@@ -140,6 +141,7 @@
     let animationId;
     let breakingParticles = [];
     let breakingFrame = 0;
+    let prevTimestamp = null;
 
     // Touch controls for mobile
     let touchStartX = null, touchStartY = null;
@@ -270,8 +272,8 @@
       drawBreakingParticles();
     }
 
-    function update() {
-      // Move ship
+    function update(deltaTime) {
+      // Move ship (keyboard)
       if (leftPressed) shipX -= 6;
       if (rightPressed) shipX += 6;
       if (upPressed) shipYpos -= 6;
@@ -280,10 +282,10 @@
       if (shipX > W - shipW) shipX = W - shipW;
       if (shipYpos < 0) shipYpos = 0;
       if (shipYpos > H - shipH) shipYpos = H - shipH;
-      // Move dots
+      // Move dots (time-based)
       for (let dot of dots) {
-        dot.x += dot.vx || 0;
-        dot.y += dot.vy || dot.speed;
+        dot.x += (dot.vx || 0) * deltaTime;
+        dot.y += (dot.vy || dot.speed) * deltaTime;
       }
       // Remove off-screen dots
       dots = dots.filter(dot =>
@@ -358,8 +360,11 @@
 
     function gameLoop(ts) {
       if (gameOver && breakingParticles.length === 0) return;
+      if (prevTimestamp === null) prevTimestamp = ts;
+      const deltaTime = Math.min((ts - prevTimestamp) / 1000, 0.05); // 초 단위, 최대 0.05s(20fps)
+      prevTimestamp = ts;
       draw();
-      if (!gameOver) update();
+      if (!gameOver) update(deltaTime);
       if (!lastDotTime || ts - lastDotTime > dotInterval) {
         spawnDot();
         lastDotTime = ts;
@@ -415,7 +420,7 @@
       shipX = W/2 - shipW/2;
       shipYpos = H * 2/3 - shipH/2;
       dots = [];
-      baseDotSpeed = isMobile() ? 3.85 * 0.25 : 3.85;
+      baseDotSpeed = isMobile() ? 70 : 240;
       dotSpeed = baseDotSpeed;
       dotInterval = 350;
       dotsPerSpawn = 1.2;    // 한 번에 생성할 점 개수 (20% 증가)
@@ -427,6 +432,7 @@
       hideGameOver();
       document.getElementById('score').textContent = 'Score: 0';
       resizeCanvas();
+      prevTimestamp = null; // Reset prevTimestamp for new game
       requestAnimationFrame(gameLoop);
     }
 
@@ -472,7 +478,7 @@
       shipX = W/2 - shipW/2;
       shipYpos = H * 2/3 - shipH/2;
       dots = [];
-      baseDotSpeed = isMobile() ? 3.85 * 0.25 : 3.85;
+      baseDotSpeed = isMobile() ? 70 : 240;
       dotSpeed = baseDotSpeed;
       dotInterval = 350;
       dotsPerSpawn = 1.2;    // 한 번에 생성할 점 개수 (20% 증가)
@@ -484,6 +490,7 @@
       hideGameOver();
       document.getElementById('score').textContent = 'Score: 0';
       resizeCanvas();
+      prevTimestamp = null; // Reset prevTimestamp for new game
       requestAnimationFrame(gameLoop);
     }
 
