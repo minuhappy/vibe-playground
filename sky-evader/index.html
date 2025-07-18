@@ -148,7 +148,9 @@
     // Adjusted for time-based movement: 290px/sec (desktop), 85px/sec (mobile)
     let baseDotSpeed = isMobile() ? 85 : 290;
     let dotSpeed = baseDotSpeed;
-    let dotInterval = 350;   // 일정하게 유지
+    // Dot spawn rate: how many times per second to spawn (e.g., 1.0 = once per second)
+    let spawnRatePerSec = 1 / 0.35; // 0.35s interval = ~2.857 spawns/sec
+    let spawnAccumulator = 0;
     let dotsPerSpawn = 1.2;    // 한 번에 생성할 점 개수 (20% 증가)
     let lastDotTime = 0;
     let score = 0;
@@ -323,6 +325,12 @@
       if (score % 60 === 0 && dotsPerSpawn < 8 * 1.2) {
         dotsPerSpawn += 1.2;
       }
+      // Dot spawn logic (time-accurate)
+      spawnAccumulator += deltaTime * spawnRatePerSec;
+      while (spawnAccumulator >= 1) {
+        spawnDot();
+        spawnAccumulator -= 1;
+      }
     }
 
     function spawnDot() {
@@ -380,10 +388,6 @@
       prevTimestamp = ts;
       draw();
       if (!gameOver) update(deltaTime);
-      if (!lastDotTime || ts - lastDotTime > dotInterval) {
-        spawnDot();
-        lastDotTime = ts;
-      }
       updateBreakingParticles();
       animationId = requestAnimationFrame(gameLoop);
     }
@@ -448,6 +452,7 @@
       document.getElementById('score').textContent = 'Score: 0';
       resizeCanvas();
       prevTimestamp = null; // Reset prevTimestamp for new game
+      spawnAccumulator = 0; // Reset spawn accumulator
       requestAnimationFrame(gameLoop);
     }
 
@@ -506,6 +511,7 @@
       document.getElementById('score').textContent = 'Score: 0';
       resizeCanvas();
       prevTimestamp = null; // Reset prevTimestamp for new game
+      spawnAccumulator = 0; // Reset spawn accumulator
       requestAnimationFrame(gameLoop);
     }
 
