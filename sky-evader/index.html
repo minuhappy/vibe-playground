@@ -145,8 +145,8 @@
     function isMobile() {
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
-    // Adjusted for time-based movement: 264px/sec (desktop), 77px/sec (mobile)
-    let baseDotSpeed = isMobile() ? 77 : 264;
+    // Adjusted for time-based movement: 290px/sec (desktop), 85px/sec (mobile)
+    let baseDotSpeed = isMobile() ? 85 : 290;
     let dotSpeed = baseDotSpeed;
     let dotInterval = 350;   // 일정하게 유지
     let dotsPerSpawn = 1.2;    // 한 번에 생성할 점 개수 (20% 증가)
@@ -435,7 +435,7 @@
       shipX = W/2 - shipW/2;
       shipYpos = H * 2/3 - shipH/2;
       dots = [];
-      baseDotSpeed = isMobile() ? 77 : 264;
+      baseDotSpeed = isMobile() ? 85 : 290;
       dotSpeed = baseDotSpeed;
       dotInterval = 350;
       dotsPerSpawn = 1.2;    // 한 번에 생성할 점 개수 (20% 증가)
@@ -493,7 +493,7 @@
       shipX = W/2 - shipW/2;
       shipYpos = H * 2/3 - shipH/2;
       dots = [];
-      baseDotSpeed = isMobile() ? 77 : 264;
+      baseDotSpeed = isMobile() ? 85 : 290;
       dotSpeed = baseDotSpeed;
       dotInterval = 350;
       dotsPerSpawn = 1.2;    // 한 번에 생성할 점 개수 (20% 증가)
