@@ -335,18 +335,18 @@
 
     function spawnDot() {
       for (let i = 0; i < Math.floor(dotsPerSpawn); i++) {
-        // 1%: 3배 빠른 빨간색(1000점 초과 시), 3%: 2배 빠른 금색, 나머지: 은색
+        // 모든 점을 흰색으로 통일
         const r = Math.random();
         let speed, color;
         if (score > 1000 && r < 0.01) {
           speed = dotSpeed * 3;
-          color = '#ff3b3b'; // 빨간색
+          color = '#ffffff'; // 흰색
         } else if (r < 0.04) {
           speed = dotSpeed * 2;
-          color = '#ffd700'; // 금색
+          color = '#ffffff'; // 흰색
         } else {
           speed = dotSpeed;
-          color = '#e0e0e0'; // 은색
+          color = '#ffffff'; // 흰색
         }
         // 50%: 비행기 방향, 50%: 기존 랜덤 방향
         if (Math.random() < 0.5) {
@@ -362,16 +362,20 @@
           const vy = dy / dist * speed;
           dots.push({ x, y, speed, vx, vy, color });
         } else {
-          // 기존 랜덤 방향 (20% 좌->우, 20% 우->좌, 60% 위->아래)
+          // 기존 랜덤 방향 (25% 좌->우, 25% 우->좌, 25% 아래->위, 25% 위->아래)
           const dir = Math.random();
-          if (dir < 0.2) {
+          if (dir < 0.25) {
             // 좌->우
             const y = Math.random() * (H * 0.7) + dotRadius;
             dots.push({ x: -dotRadius, y, speed, vx: speed * 0.3, vy: 0, color });
-          } else if (dir < 0.4) {
+          } else if (dir < 0.5) {
             // 우->좌
             const y = Math.random() * (H * 0.7) + dotRadius;
             dots.push({ x: W + dotRadius, y, speed, vx: -speed * 0.3, vy: 0, color });
+          } else if (dir < 0.75) {
+            // 아래->위
+            const x = Math.random() * (W - dotRadius * 2) + dotRadius;
+            dots.push({ x, y: H + dotRadius, speed, vx: 0, vy: -speed, color });
           } else {
             // 위->아래
             const x = Math.random() * (W - dotRadius * 2) + dotRadius;
